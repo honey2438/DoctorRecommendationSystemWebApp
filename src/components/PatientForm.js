@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 
-function DoctorForm({ title }) {
-
-  const initialState={
+function PatientForm({ title }) {
+  const initialState = {
     name: "",
     email: "",
     phone: "",
     city: "",
-    speciality: "",
-  }
+    symptom: "",
+  };
   const [data, setData] = useState(initialState);
 
-
-  function reset(event){
+  function reset(event) {
     event.preventDefault();
     setData(initialState);
   }
@@ -28,7 +26,7 @@ function DoctorForm({ title }) {
     };
     try {
       const response = await fetch(
-        "http://localhost:8080/doctor/save-doctor",
+        "http://localhost:8080/patient/save-patient",
         requestOptions
       );
       const responseStatus = response.status;
@@ -41,7 +39,7 @@ function DoctorForm({ title }) {
         }
         alert(messagesString);
       } else {
-        alert("Doctor Added Successfully");
+        alert("Patient Added Successfully");
       }
     } catch (error) {
       alert("Error Occured " + error);
@@ -103,44 +101,47 @@ function DoctorForm({ title }) {
             <label className="form-label" htmlFor="city">
               City*
             </label>
-            <select
+            <input
+              required
+              className="form-input"
               id="city"
               name="city"
-              className="form-input"
+              type="city"
               onChange={(e) => {
                 setData({ ...data, city: e.target.value });
               }}
               value={data.city}
-            >
-              <option value="Noida">Noida</option>
-              <option value="Delhi">Delhi</option>
-              <option value="Faridabad">Faridabad</option>
-            </select>
+            />
           </div>
           <div className="inputgroup">
             <label className="form-label" htmlFor="speciality">
-              Speciality*
+              Symptom*
             </label>
             <select
               className="form-input"
               id="speciality"
               name="speciality"
               onChange={(e) => {
-                setData({ ...data, speciality: e.target.value });
+                setData({ ...data, symptom: e.target.value });
               }}
               value={data.speciality}
             >
-              <option value="orthopedic">Orthopedic</option>
-              <option value="gynecology">Gynecology</option>
-              <option value="dermatology">Dermatology</option>
-              <option value="ent">ENT</option>
+              <option value="arthritis">Arthritis</option>
+              <option value="backpain">Backpain</option>
+              <option value="tissue injuries">Tissue Injuries</option>
+              <option value="dysmenorrhea">Dysmenorrhea</option>
+              <option value="skin infection">Skin Infection</option>
+              <option value="skin burn">Skin Burn</option>
+              <option value="ear pain">Ear Pain</option>
             </select>
           </div>
           <div className="inputgroup">
             <button className="form-btn" onClick={postFunction}>
               Add
             </button>
-            <button className="form-btn" onClick={reset}>Clear</button>
+            <button className="form-btn" onClick={reset}>
+              Clear
+            </button>
           </div>
         </form>
       </div>
@@ -148,4 +149,4 @@ function DoctorForm({ title }) {
   );
 }
 
-export default DoctorForm;
+export default PatientForm;

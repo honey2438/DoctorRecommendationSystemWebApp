@@ -16,6 +16,12 @@ body{
   align-items: center;
   justify-content: center;
 }
+.flex-row{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content:space-evenly
+}
 
 .header{
   height: 10vh;
@@ -30,10 +36,12 @@ body{
 }
 .form-container{
   width:100%;
-  height: 80vh;
+  
+}
+.search-form-container{
+  width:100%;
 }
 .doctor-form{
-  
   width:50%;
   height: 60vh;
 }
@@ -64,3 +72,50 @@ body{
 
 }
 
+nav{
+  width:100%;
+  background-color: rgb(167, 167, 167);
+  height: 10vh;
+}
+.navbar{
+  height: 100%;
+  background-color: rgb(167, 167, 167);
+  list-style: none;
+  margin:auto;
+}
+.navbar>li{
+  padding:5px;
+  color:green;
+  font-size: 1.4em;
+  font-weight: bold;
+}
+.navbar>li>a{
+  text-decoration: none;
+   color:white;
+}
+
+.doctor-list-container{
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  align-items:center;
+}
+.doctor-table{
+  width:70%;
+  border:1px solid #000000;
+  margin:20px 0;
+}
+.row-data-alignment{
+  margin:5px;
+}
+.flex-column{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  align-items:center;
+}
+.doctor-table-head{
+  border-bottom: 1px solid #000000;
+}
