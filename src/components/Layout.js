@@ -8,16 +8,16 @@ function Layout() {
       <nav>
         <ul className="flex-row navbar">
           <li>
-            <Link to="/">All Doctors</Link>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/searchDoctorByCity">Search By City</Link>
+            <Link to="/registrationOptions">Register</Link>
           </li>
           <li>
-            <Link to="searchDoctorByCityAndSpec">Search By City And Spec</Link>
+            <Link to="/editOptions">Edit</Link>
           </li>
           <li>
-            <Link to="addDoctor">Add Doctor</Link>
+            <Link to="/searchDoctorOptions">Search Doctor</Link>
           </li>
         </ul>
       </nav>

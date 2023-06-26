@@ -21,8 +21,12 @@ function DoctorList({ title }) {
   const [doctors, setDoctors] = useState([initialState]);
  
   const checkParams = async () => {
-   
-    if('city' in params && 'speciality' in params){
+    if('pid' in params){
+        setUrl(`http://localhost:8080/doctor/doctor-by-pid?PID=${params.pid}`);
+        console.log(params.pid);
+        fetchDoctors();
+    }
+    else if('city' in params && 'speciality' in params){
         setUrl(`http://localhost:8080/doctor/doctor-list-by-city-and-speciality?city=${params.city}&speciality=${params.speciality}`);
         console.log(params.city," ",params.speciality)
         fetchDoctors();
@@ -47,6 +51,7 @@ function DoctorList({ title }) {
         const responseStatus = response.status;
         if (responseStatus === 404) {
           const res = await response.json();
+          alert(res);
           console.log(res);
         } else {
           const doctors = await response.json();

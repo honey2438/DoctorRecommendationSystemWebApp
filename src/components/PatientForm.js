@@ -26,7 +26,7 @@ function PatientForm({ title }) {
     };
     try {
       const response = await fetch(
-        "http://localhost:8080/patient/save-patient",
+        "http://localhost:8080/patient/add-patient",
         requestOptions
       );
       const responseStatus = response.status;
@@ -114,13 +114,13 @@ function PatientForm({ title }) {
             />
           </div>
           <div className="inputgroup">
-            <label className="form-label" htmlFor="speciality">
+            <label className="form-label" htmlFor="symptom">
               Symptom*
             </label>
             <select
               className="form-input"
-              id="speciality"
-              name="speciality"
+              id="symptom"
+              name="symptom"
               onChange={(e) => {
                 setData({ ...data, symptom: e.target.value });
               }}
