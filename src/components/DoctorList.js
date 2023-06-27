@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../App.css";
+// import "../App.css";
 import { useParams } from "react-router-dom";
 
 function DoctorList({ title }) {
@@ -19,6 +19,8 @@ function DoctorList({ title }) {
     speciality:""
     }
   const [doctors, setDoctors] = useState([initialState]);
+  const [filterDoctors, setFilterDocotors] = useState([initialState]);
+  const [searchText,setSearchText]=useState("");
  
   const checkParams = async () => {
     if('pid' in params){
@@ -46,7 +48,7 @@ function DoctorList({ title }) {
 
   async function fetchDoctors() {
     try {
-        if(url!==""){
+        if(url==="")return;
         const response = await fetch(url);
         const responseStatus = response.status;
         if (responseStatus === 404) {
@@ -54,19 +56,45 @@ function DoctorList({ title }) {
           alert(res);
           console.log(res);
         } else {
-          const doctors = await response.json();
-          setDoctors(doctors);
-          console.log(doctors);
+          const responseDoctors = await response.json();
+          setDoctors(responseDoctors);
+          setFilterDocotors(responseDoctors);
+          console.log(responseDoctors);
         }
-      }
       } catch (error) {
         alert("Error Occured " + error);
       }
     }
  
+    function search(){
+      if(searchText===""){
+        setFilterDocotors(doctors);
+        return;
+      }
+        const filteredDoctors=doctors.filter((doctor)=>{
+            return doctor.name.toLowerCase().includes(searchText.toLowerCase()) || doctor.city.toLowerCase().includes(searchText.toLowerCase()) || doctor.speciality.toLowerCase().includes(searchText.toLowerCase()) || doctor.email.includes(searchText) || doctor.phone.includes(searchText);
+        });
+        console.log(filteredDoctors)
+        setFilterDocotors(filteredDoctors);
+    }
+    useEffect(() => {
+        search();
+    }, [searchText]);
   return (
     <div className="flex-column doctor-list-container">
       <h1>{title}</h1>
+      <div className="flex-last">
+            
+            <input
+              id="search"
+              name="search"
+              placeholder="Search"
+              onChange={(e)=>{setSearchText(e.target.value)}} 
+              value={searchText}
+              
+            />
+          </div>
+      
       <table className="doctor-table">
         <thead>
           <tr className="row-data-alignment doctor-table-head">
@@ -89,7 +117,7 @@ function DoctorList({ title }) {
           </tr>
         </thead>
         <tbody>
-          {doctors.map((doctor) => (
+          {filterDoctors.map((doctor) => (
             <tr key={doctor.did} className="row-data-alignment">
               <td>{doctor.did}</td>
               <td>{doctor.name}</td>

@@ -1,4 +1,4 @@
-// import DoctorForm from "./components/DoctorForm";
+
 import "./App.css";
 import DoctorForm from "./components/DoctorForm";
 import DoctorList from "./components/DoctorList";

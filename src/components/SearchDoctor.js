@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../App.css";
+// import "../App.css";
 import { Link } from "react-router-dom";
 
 function SearchDoctor({ title, spec }) {
@@ -53,7 +53,7 @@ function SearchDoctor({ title, spec }) {
           </div>
           <div className="flex-center inputgroup">
             
-              <button className="form-btn"><Link to={url}>Search</Link></button>
+              <button className="form-btn" onClick={(e)=>{e.preventDefault();}}><Link to={url}>Search</Link></button>
            
             <button className="form-btn" onClick={resetForm}>
               Clear

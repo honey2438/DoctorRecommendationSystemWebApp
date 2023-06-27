@@ -159,7 +159,13 @@ nav{
 }
 .home-label-large{
   font-size: 3.5em;
-  color:rgb(252, 252, 252);
+  color:rgb(255, 0, 0);
   font-weight: bold;
   font-family: cursive;
+}
+.flex-last{
+  width:70%;
+  display:flex;
+  justify-content:end;
+
 }
